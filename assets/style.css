@@ -106,7 +106,7 @@ header {
 
 #banner {
 	display: flex;
-	flex-direction: column;
+	flex-direction: none;/* !!! column !!! <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< */
 	align-items: center;
 	justify-content: center;
 	width: 100%;
@@ -132,6 +132,30 @@ header {
 #banner .arrow_right {
 	right: 10px;
 }
+/* Slider Slider Slider Slider Slider Slider*/
+.slider {
+}
+.slider-content {
+  display: none;
+}
+.active--slide {
+  display: inherit;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.arrows {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.arrow {
+  cursor: pointer;
+}
+
+
+
+
 /* Gestion des points du carrousel */
 .dots {
 	position: absolute;
