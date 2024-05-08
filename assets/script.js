@@ -18,67 +18,46 @@ const slides = [
 ]
 
 let index = 0
-let arr = undefined
 const leftArrowListener = document.querySelector('.arrow_left');
 const rightArrowListener = document.querySelector('.arrow_right');
 const dots = document.querySelector(".dots");
 const slideLength = slides.length;
 
-function dispIdx () {
-  if (arr === 'l'){
-    console.log('index',index, 'click left --')
-  } else {
-    console.log('index',index, 'click right ++')
-  }
-}
-console.log('index', index);
-
-
-
-
-
-
 function listenerArrowLeft () {
   leftArrowListener.addEventListener("click", () => {
-    arr = 'l'
+    const dotMove = document.querySelectorAll('.dots .dot')
+    dotMove[index].classList.remove('dot_selected')
+    const activeSlide = document.querySelectorAll('.slider-content')
+    activeSlide[index].classList.remove('active--slide')
     index--
     if (index == -1) {
       index = slideLength -1
     }
-
-
-    dispIdx();
+    dotMove[index].classList.add('dot_selected')
+    activeSlide[index].classList.add('active--slide')
   });
 }
 listenerArrowLeft();
 
-
-
-
 function listenerArrowRight () {
   rightArrowListener.addEventListener("click", () => {
-    arr = 0
+    const dotMove = document.querySelectorAll('.dots .dot')
+    dotMove[index].classList.remove('dot_selected')
+    const activeSlide = document.querySelectorAll('.slider-content')
+    activeSlide[index].classList.remove('active--slide')
     index++
     if (index > slideLength -1) {
       index = 0
     }
-    
-
-    dispIdx();
+    dotMove[index].classList.add('dot_selected')
+    activeSlide[index].classList.add('active--slide')
+    const textChange = document.querySelectorAll('.slider-content p')
+    textChange[index].innerHTML = slides[index].tagLine;
   });
 }
 listenerArrowRight();
 
-
-/*---------------------------------------------------------------------------------------------*/
-
-
-
-
-
-
 function dotLine () {
-
   for (let i = 0; i < slideLength; i++) {
     const dot = document.createElement('div');
     dot.classList.add('dot');
@@ -87,7 +66,6 @@ function dotLine () {
       dot.classList.add("dot_selected")
     }
   }
-
 }
 dotLine()
 
