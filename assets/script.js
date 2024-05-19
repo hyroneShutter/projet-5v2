@@ -28,14 +28,16 @@ function listenerArrowLeft() {
   leftArrowListener.addEventListener("click", () => {
     const dotMove = document.querySelectorAll(".dots .dot");
     dotMove[index].classList.remove("dot_selected");
-    const activeSlide = document.querySelectorAll(".slider-content");
-    activeSlide[index].classList.remove("active--slide");
+    const imgElement = document.querySelector(".banner-img");
     index--;
     if (index == -1) {
       index = slideLength - 1;
     }
     dotMove[index].classList.add("dot_selected");
-    activeSlide[index].classList.add("active--slide");
+    imgElement.src = `./assets/images/slideshow/${slides[index].image}`;
+    const textChange = document.querySelector(".slider-content > p");
+    textChange.innerHTML = slides[index].tagLine;
+    dataKey();
   });
 }
 listenerArrowLeft();
@@ -44,16 +46,16 @@ function listenerArrowRight() {
   rightArrowListener.addEventListener("click", () => {
     const dotMove = document.querySelectorAll(".dots .dot");
     dotMove[index].classList.remove("dot_selected");
-    const activeSlide = document.querySelectorAll(".slider-content");
-    activeSlide[index].classList.remove("active--slide");
+    const imgElement = document.querySelector(".banner-img");
     index++;
     if (index > slideLength - 1) {
       index = 0;
     }
     dotMove[index].classList.add("dot_selected");
-    activeSlide[index].classList.add("active--slide");
-    const textChange = document.querySelectorAll(".slider-content p");
-    textChange[index].innerHTML = slides[index].tagLine;
+    imgElement.src = `./assets/images/slideshow/${slides[index].image}`;
+    const textChange = document.querySelector(".slider-content > p");
+    textChange.innerHTML = slides[index].tagLine;
+    dataKey();
   });
 }
 listenerArrowRight();
@@ -69,3 +71,8 @@ function dotLine() {
   }
 }
 dotLine();
+
+function dataKey() {
+  const sliderContent = document.querySelector(".slider-content");
+  sliderContent.setAttribute("data-key", index);
+}
